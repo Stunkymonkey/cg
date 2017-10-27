@@ -1,0 +1,21 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "taskName": "Aufgabe1",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                //"Aufgabe1/Aufgabe1.cpp"
+                "Aufgabe2/Aufgabe2.cpp", "Aufgabe2/LineStrip3D.cpp"
+                //"Aufgabe3/Aufgabe3.cpp"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}
