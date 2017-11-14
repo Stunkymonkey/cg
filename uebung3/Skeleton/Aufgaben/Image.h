@@ -103,6 +103,9 @@ inline void cg::image<color_space>::initialize()
 	///////
 	// TODO
 	// Initialize the image to black.
+	for (std::vector<int>::size_type i = 0; i != data.size(); i++) {
+		std::cout << std::to_string(i) << std::endl;
+	}
 }
 
 template <cg::color_space_t color_space>
@@ -111,6 +114,9 @@ inline void cg::image<color_space>::initialize(const value_type initial_value)
 	///////
 	// TODO
 	// Initialize the image using the same value for each color channel.
+	for (std::vector<int>::size_type i = 0; i != data.size(); i++) {
+		std::cout << std::to_string(i) << std::endl;
+	}
 }
 
 template <cg::color_space_t color_space>
@@ -119,6 +125,9 @@ inline void cg::image<color_space>::initialize(const tuple_type& initial_value)
 	///////
 	// TODO
 	// Initialize the image using the same pixel color.
+	for (std::vector<int>::size_type i = 0; i != data.size(); i++) {
+		std::cout << std::to_string(i) << std::endl;
+	}
 }
 
 template <cg::color_space_t color_space>

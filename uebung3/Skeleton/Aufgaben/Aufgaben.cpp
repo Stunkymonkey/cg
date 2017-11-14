@@ -52,9 +52,13 @@ void aufgabe1(const std::string& source_file, const std::string& target_file)
 	{
 		// Load an RGB image, convert it to grayscale and save the grayscale image.
 		// Use the classes provided in ImageIO and ImageConverter.
+		std::cout << "Init" << std::endl;
 		cg::image_io io;
+		std::cout << "Created" << std::endl;
 		auto image = io.load_rgb_image(source_file);
+		std::cout << "Loadded" << std::endl << std::endl;
 		auto gray = cg::image_converter::rgb_to_gray(image);
+		std::cout << "Converted" << std::endl << std::endl;
 		io.save_grayscale_image(target_file, gray);
 
 		std::cout << "File successfully created" << std::endl << std::endl;
