@@ -1,0 +1,200 @@
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.55in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\rhead{\hmwkClass\ (\hmwkClassInstructor): \hmwkTitle} % Top right header
+\chead{} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Aufgabe \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{\"{U}bungsblatt \#2} % Assignment title
+\newcommand{\hmwkDueDate}{Donnerstag,\ November\ 9,\ 2017} % Due date
+\newcommand{\hmwkClass}{Computergrafik\ WS 2017/2018} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Gruppenabgabe} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Lukas Baur, \linebreak Felix B\"{u}hler, \linebreak Marco Hildenbrand} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+%\newpage
+%\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	Aufgabe 1
+%----------------------------------------------------------------------------------------
+\begin{homeworkProblem}
+
+\textbf{Aufgabe 1.1} \\ 
+Man m\"{o}chte in der Computergraphik so nah wie m\"{o}glich an die Wahrnehmung des Menschen kommen, d.h. alles so reell wie m\"{o}glich aussehen lassen und dazu geh\"{o}rt zu verstehen, wie der Mensch alles wahrnimmt. \\\\\\
+
+\textbf{Aufgabe 1.2} \\ 
+St\"{a}bchen sind lichtempfindlicher als die Zapfen. Lassen Lichtverh\"{a}ltnisse nach, so werden an das Gehirn nur noch Informationen \"{u}ber Beleuchtungsst\"{a}rke weitergeleitet, da Farbzapfen keine Reize mehr ausl\"{o}sen.\\
+Die weitergeleiteten Informationen enthalten ``\textit{keine Farbe}'', es entsteht ein Graueindruck (``Nachts sind alle Katzen Grau.'')\\\\
+
+\textbf{Aufgabe 1.3} \\ 
+Gem\"{a}\ss\ \ der Gegenfarbtheorie kann kein r\"{o}tliches gr\"{u}n wahrgenommen werden:\\
+Die Zapfen f\"{u}r das Wahrnehmen von rot, blau und gr\"{u}n liefern unterschiedliche Impulse gem\"{a}\ss \ \ einer charakteristischen Zusammenschaltung: \\
+Rot und Gr\"{u}n werden subtrahiert, deren Differenz wird an den Rot-Gr\"{u}n-Kanal weitergeleitet. Gelb wird durch die Addition von Rot und Gr\"{u}n erzeugt und Gelb wird von Blau subtrahiert und und den Gelb-Blau-Kanal geleitet.\\\\
+
+\textbf{Aufgabe 1.4} \\ 
+Das Auge nimmt bei Nacht nur mit den lichtempfindlichen St\"{a}bchen Objekte (hier Sterne) wahr. Fixiert man nun ein schwach leuchtendes Objekt, so f\"{a}llt das Licht auf den gelben Fleck, an dem sich die Zapfen -- aber keine St\"{a}bchen -- befinden, die nichts wahrnehmen k\"{o}nnen, die Folge ist, dass man nichts sehen kann. \\\
+
+\textbf{Aufgabe 1.5} \\ 
+Metamere sind zwei Leuchtfelder, die verschiedene Wellenl\"{a}ngen haben, aber zum gleichen Sinneseindruck f\"{u}hren.\\
+Es k\"{o}nnen f\"{u}r den Betrachter gleiche Farben durch unterschiedliche Farbreize erzeugt werden. F\"{u}r den Betrachter gleich aussehende Farben, die aber aus verschiedenen Farbreize zusammengesetzt sind, werden Metamere genannt.
+\\\\
+\textit{Es gibt mehrere Ursachen f\"{u}r Metamerie, im folgenden werden nur ein paar genannt.\\}
+\begin{list}{-}{\textbf{M\"{o}gliche Ursachen f\"{u}r Metamerie}:}
+\item Beobachtermetamerie: Die Wahrnehmung unterschiedlicher Betrachter variiert. Demnach k\"{o}nnen zwei Farben als identisch eingestuft werden, obwohl sie unterschiedlich sind, bei den Betrachtern aber dieselben Reize ausl\"{o}sen.
+\item Blickwinkelwechsel: Unterschiedliche Blickwinkel k\"{o}nnen bei speziellen Oberfl\"{a}chen unterschiedliche Farbeindr\"{u}cke erzeugen. Dadurch k\"{o}nnen zwei unterschiedliche Farbreize unter unterschiedlichen Blickwinkel gleich erscheinen.
+\item Beleuchtungsmetamerie: Unter unterschiedlichen Beleuchtungen wirken Farben (zum Beispiel von Oberfl\"{a}chen) unterschiedlich. Demzufolge k\"{o}nnen zwei unterschiedliche Oberfl\"{a}chen bei unterschiedlichem Umgebungslicht gleich erscheinen.
+\end{list}
+
+
+
+
+
+
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	Aufgabe 2
+%----------------------------------------------------------------------------------------
+\begin{homeworkProblem}
+\textbf{Aufgabe 2.1} \\ \\ 
+\textit{Additive Farbmischung:}\\ Hierbei werden Farbkombinationen durch Addition der Spektren erreicht.
+Im menschlichen Auge beschreibt es die \"{A}nderung des Farbeindrucks durch das sukzessive Hinzuf\"{u}gen weitere Farbreize.
+\\Auftreten: LCD Monitore, hierbei sind mehrere Projektoren auf ein Schirm gerichtet.\\
+
+\textit{Subtraktive Farbmischung:}\\ Hierbei werden Farbkombinationen durch Multiplikation der Spektren ereicht.
+Bei der subtraktiven Farbmischung werden ausgehend von einer Grundfarbe nach und nach (mithilfe von Absorption oder Filterung) Farbanteile weggenommen.\\
+Auftreten: Farbstifte, Farbdrucker
+ \\\\\\
+
+\textbf{Aufgabe 2.2} \\ \\  
+CYMK: 0 100 100 100\\
+HSV: $0^{\circ}$ 100\% 0.4\% \\
+HSL: $0^{\circ}$ 100\% 0.2\% \\\\\\
+\textbf{Aufgabe 2.3} \\ \\  
+Bei der Farbmischung kann man direkt den gew\"{u}nschten Farbton w\"{a}hlen und dann entscheiden, wie hell oder ges\"{a}ttigt dieser sein soll.
+Dies f\"{u}hrt dazu, dass das HSV Modell oftmals bei Farbnachstellungen gegen\"{u}ber RGB und CMYK bevorzugt wird, da dieses der menschenlichen Farbwahrnehmung mehr \"{a}hnelt und somit die gew\"{u}nschte Farbkompostion erleichtert.
+ \\\\\\
+\textbf{Aufgabe 2.4} \\ \\  
+\textit{Colormachting-Functions} sind daf\"{u}r zurst\"{a}ndig, eine Relation zwischen der menschlichen Farbwahrnehmung und der physikalischen Ursachen des Farbreizes herzustellen.
+ \\\\\\
+\textbf{Aufgabe 2.5} \\ \\  
+Die Luminanz-Differenz von Vordergrund und Vordergrund geteilt durch die Luminanz des Hintergrunds sollte den Wert 0.2 \"{u}bersteigen.\\
+\\
+$generell: C = 0.3r + 0.59g + 0.11b $
+\\\\
+Luminanz Vordergrund:\\ $C_{gelb} = 0.3(255/255) + 0.59(255/255) + 0.11(0/255) \\
+  = 0.3 + 0.59 \\
+  = 0.89$
+\\\\
+Luminanz Hintergrund:\\ $C_{gelb} = 0.3(255/255) + 0.59(255/255) + 0.11(255/255) \\
+  = 1$\\\\
+Luminanz-Differenz/Hintergrund:\\ $C_{ges} = \frac{1 -0.89}{1} \\
+  = 0.11$\\\\
+ Dieser Wert ist kleiner als 0.2, also eine schlechte Wahl f\"{u}r die Vordergrundfarbe.\\\\\
+\textbf{Aufgabe 2.6} \\ \\  
+Drucker verwenden meistens das \textit{CMYK-Modell}. Die Schwarze Patrone hat den Vorteil, dass durch die Mischung der drei anderen Farben kein deckendes Schwarz gemischt werden kann, und man mit der schwarzen Patrone (teurere) farbige Tinte einspart, da dieses nicht jedes mal aus den drei anderen Farben dargestellt werden muss.
+ \\\\\\
+
+\end{homeworkProblem}
+
+\end{document}
