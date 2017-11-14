@@ -34,7 +34,6 @@ cg::image<cg::color_space_t::RGB> cg::image_io::load_rgb_image(const std::string
 		{
 			for (unsigned int i = 0; i < header.width; ++i)
 			{
-				std::cout << "QWERTZU" << std::endl;
 				if (header.max_value < 256)
 				{
 					image(i, j)[0] = static_cast<float>(cbuffer[index++]) / 255.0f;
@@ -47,7 +46,6 @@ cg::image<cg::color_space_t::RGB> cg::image_io::load_rgb_image(const std::string
 					image(i, j)[1] = static_cast<float>(wbuffer[index++]) / 65535.0f;
 					image(i, j)[2] = static_cast<float>(wbuffer[index++]) / 65535.0f;
 				}
-				std::cout << "LKJHG" << std::endl;
 			}
 		}
 
