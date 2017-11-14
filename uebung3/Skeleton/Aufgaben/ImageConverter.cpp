@@ -15,7 +15,7 @@ cg::image<cg::color_space_t::HSV> cg::image_converter::rgb_to_hsv(const image<co
 			// All values are in range [0.0, 1.0].
 			float min, max, delta;
 			float r, g, b;
-			int h = 0;
+			float h = 0;
 			r = original(i, j)[0];
 			g = original(i, j)[1];
 			b = original(i, j)[2];
@@ -24,23 +24,25 @@ cg::image<cg::color_space_t::HSV> cg::image_converter::rgb_to_hsv(const image<co
 			converted(i, j)[2] = max;
 			delta = max-min;
 			if( max != 0 ){
-                converted(i, j)[1] = delta / max;// s 
+                converted(i, j)[1] = delta / max;// s
         	} else {
-                // if r = g = b = 0 then s = 0, v is undefined 
-                converted(i, j)[1] = 0; 
+                // if r = g = b = 0 then s = 0, v is undefined
+                converted(i, j)[1] = 0;
                 converted(i, j)[2] = -1; 
                 break;
  			}
 			if( r == max ) // between yellow & magenta
                 h = ( g - b ) / delta;
 			else if( g == max ) // between cyan & yellow
-				h = 2 + ( b - r ) / delta;
-			else // between magenta & cyan
-				h = 4 + ( r - g ) / delta;
-			h *= 60;//degrees        
+				h = 2.0f + ( b - r ) / delta;
+			else if( b == max ) // between magenta & cyan
+				h = 4.0f + ( r - g ) / delta;
+			else
+				std::cout << "ERROR" << std::endl;
+			h *= 60;//degrees
 			if( h < 0 )
 				h += 360;
-			converted(i, j)[0] = h / 360.0;
+			converted(i, j)[0] = h / 360.0f;
 		}
 	}
 
@@ -61,9 +63,9 @@ cg::image<cg::color_space_t::RGB> cg::image_converter::hsv_to_rgb(const image<co
 			float c, HPrime, x, m;
 			float h, s, v;
 			float r, g, b;
-			h = converted(i, j)[0] * 360.0;
-			s = converted(i, j)[1];
-			v = converted(i, j)[2];
+			h = original(i, j)[0] * 360.0;
+			s = original(i, j)[1];
+			v = original(i, j)[2];
 			c = v * s; // Chroma
 			HPrime = std::fmod(h / 60.0, 6);
 			x = c * (1 - std::fabs(fmod(HPrime, 2) - 1));

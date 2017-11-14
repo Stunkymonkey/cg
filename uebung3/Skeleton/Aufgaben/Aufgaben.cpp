@@ -77,9 +77,7 @@ void aufgabe2(const std::string& source_file, const std::string& target_file)
 		// Use the classes provided in ImageIO and ImageConverter.
 		cg::image_io io;
 		auto image = io.load_grayscale_image(source_file);
-		std::cout << "Loadded" << std::endl << std::endl;
 		auto bw = cg::image_converter::gray_to_bw(image);
-		std::cout << "Converted" << std::endl << std::endl;
 		io.save_bw_image(target_file, bw);
 
 		std::cout << "File successfully created" << std::endl << std::endl;
