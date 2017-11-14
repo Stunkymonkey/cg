@@ -50,13 +50,12 @@ void aufgabe1(const std::string& source_file, const std::string& target_file)
 {
 	try
 	{
-		///////
-		// TODO
 		// Load an RGB image, convert it to grayscale and save the grayscale image.
 		// Use the classes provided in ImageIO and ImageConverter.
-		cg::image<cg::color_space_t::RGB> image = cg::image_io::load_rgb_image(source_file);
-		cg::image<cg::color_space_t::Gray> gray = cg::image_converter::rgb_to_gray.rgb_to_gray(image);
-		cg::image_io::save_grayscale_image(target_file, gray);
+		cg::image_io io;
+		auto image = io.load_rgb_image(source_file);
+		auto gray = cg::image_converter::rgb_to_gray(image);
+		io.save_grayscale_image(target_file, gray);
 
 		std::cout << "File successfully created" << std::endl << std::endl;
 	}
@@ -74,10 +73,12 @@ void aufgabe2(const std::string& source_file, const std::string& target_file)
 {
 	try
 	{
-		///////
-		// TODO
 		// Load a grayscale image, convert it to black-and-white and save the image.
 		// Use the classes provided in ImageIO and ImageConverter.
+		cg::image_io io;
+		auto image = io.load_grayscale_image(source_file);
+		auto bw = cg::image_converter::gray_to_bw(image);
+		io.save_bw_image(target_file, bw);
 
 		std::cout << "File successfully created" << std::endl << std::endl;
 	}
@@ -95,10 +96,13 @@ void aufgabe3(const std::string& source_file, const std::string& target_file)
 {
 	try
 	{
-		///////
-		// TODO
 		// Load an RGB image, convert it to HSV and back to RGB. Save the resulting RGB image.
 		// Use the classes provided in ImageIO and ImageConverter.
+		cg::image_io io;
+		auto image = io.load_rgb_image(source_file);
+		auto temp = cg::image_converter::rgb_to_hsv(image);
+		auto result = cg::image_converter::hsv_to_rgb(temp);
+		io.save_rgb_image(target_file, result);
 
 		std::cout << "File successfully created" << std::endl << std::endl;
 	}
