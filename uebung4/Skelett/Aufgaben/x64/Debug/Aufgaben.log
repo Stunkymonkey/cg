@@ -1,0 +1,18 @@
+﻿  glad.c
+  ImageViewer.cpp
+  ImageIO.cpp
+  ImageFilter.cpp
+  ImageConverter.cpp
+  ImageBase.cpp
+  main.cpp
+  imgui_impl_glfw_gl3.cpp
+  imgui_draw.cpp
+  imgui_demo.cpp
+  imgui.cpp
+  Texture2D.cpp
+e:\lehre\ws1718\cg\aufgabenws17\04_gl_image_filter\skelett\aufgaben\glowl\texture2d.cpp(48): warning C4244: '=': conversion from 'double' to 'GLsizei', possible loss of data
+e:\lehre\ws1718\cg\aufgabenws17\04_gl_image_filter\skelett\aufgaben\glowl\texture2d.cpp(105): warning C4244: '=': conversion from 'double' to 'GLsizei', possible loss of data
+  GLSLProgram.cpp
+  Generating Code...
+  Aufgaben.vcxproj -> E:\Lehre\WS1718\CG\AufgabenWS17\04_gl_image_filter\Skelett\x64\Debug\ImageViewer.exe
+  Aufgaben.vcxproj -> E:\Lehre\WS1718\CG\AufgabenWS17\04_gl_image_filter\Skelett\x64\Debug\ImageViewer.pdb (Partial PDB)
