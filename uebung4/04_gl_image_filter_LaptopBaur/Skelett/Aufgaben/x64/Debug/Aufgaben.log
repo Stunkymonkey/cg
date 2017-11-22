@@ -1,0 +1,32 @@
+﻿  ImageViewer.cpp
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(448): error C2676: Binärer Operator "[": "std::pair<int,int>" definiert diesen Operator oder eine Konvertierung in einen für den vordefinierten Operator geeigneten Typ nicht
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(451): error C2676: Binärer Operator "[": "cg::image<cg::color_space_t::RGBA>" definiert diesen Operator oder eine Konvertierung in einen für den vordefinierten Operator geeigneten Typ nicht
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(451): error C2059: Syntaxfehler: ";"
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(456): error C2039: "TextureLayout": Ist kein Element von "cg::image<cg::color_space_t::RGBA>"
+  c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageio.h(62): note: Siehe Deklaration von "cg::image<cg::color_space_t::RGBA>"
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(456): error C2146: Syntaxfehler: Fehlendes ";" vor Bezeichner "img_layout"
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(456): error C2039: "img_layout": Ist kein Element von "cg::image<cg::color_space_t::RGBA>"
+  c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageio.h(62): note: Siehe Deklaration von "cg::image<cg::color_space_t::RGBA>"
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(456): error C2039: "m_original_image": Ist kein Element von "cg::image<cg::color_space_t::RGBA>"
+  c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageio.h(62): note: Siehe Deklaration von "cg::image<cg::color_space_t::RGBA>"
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(457): error C2065: "img_layout": nichtdeklarierter Bezeichner
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(457): error C2228: Links von ".int_parameters" müssen sich in einer Klasse/Struktur/Union befinden
+  c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(457): note: Typ ist "unknown-type"
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(457): error C2228: Links von ".push_back" müssen sich in einer Klasse/Struktur/Union befinden
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(458): error C2065: "img_layout": nichtdeklarierter Bezeichner
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(458): error C2228: Links von ".int_parameters" müssen sich in einer Klasse/Struktur/Union befinden
+  c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(458): note: Typ ist "unknown-type"
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(458): error C2228: Links von ".push_back" müssen sich in einer Klasse/Struktur/Union befinden
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(459): error C2065: "img_layout": nichtdeklarierter Bezeichner
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(459): error C2228: Links von ".int_parameters" müssen sich in einer Klasse/Struktur/Union befinden
+  c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(459): note: Typ ist "unknown-type"
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(459): error C2228: Links von ".push_back" müssen sich in einer Klasse/Struktur/Union befinden
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(460): error C2065: "img_layout": nichtdeklarierter Bezeichner
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(460): error C2228: Links von ".int_parameters" müssen sich in einer Klasse/Struktur/Union befinden
+  c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(460): note: Typ ist "unknown-type"
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(460): error C2228: Links von ".push_back" müssen sich in einer Klasse/Struktur/Union befinden
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imageviewer.cpp(461): error C2065: "img_layout": nichtdeklarierter Bezeichner
+  ImageFilter.cpp
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imagefilter.cpp(14): warning C4305: "Initialisierung": Verkürzung von "double" in "float"
+c:\users\lukas baur\desktop\04_gl_image_filter\skelett\aufgaben\imagefilter.cpp(24): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
+  Code wird generiert...

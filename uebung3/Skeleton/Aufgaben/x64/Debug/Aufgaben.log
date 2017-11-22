@@ -1,0 +1,20 @@
+﻿  ImageConverter.cpp
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\imageconverter.cpp(66): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\imageconverter.cpp(70): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\imageconverter.cpp(71): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\imageconverter.cpp(123): warning C4244: "=": Konvertierung von "double" in "cg::image<cg::color_space_t::Gray>::value_type", möglicher Datenverlust
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\imageconverter.cpp(141): warning C4244: "Initialisierung": Konvertierung von "double" in "float", möglicher Datenverlust
+  Aufgaben.cpp
+  Code wird generiert...
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\image.h(164): warning C4715: "cg::image<1>::index": Nicht alle Steuerelementpfade geben einen Wert zurück.
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\image.h(164): warning C4715: "cg::image<3>::index": Nicht alle Steuerelementpfade geben einen Wert zurück.
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\image.h(164): warning C4715: "cg::image<0>::index": Nicht alle Steuerelementpfade geben einen Wert zurück.
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\image.h(164): warning C4715: "cg::image<2>::index": Nicht alle Steuerelementpfade geben einen Wert zurück.
+  Kompilieren...
+  ImageIO.cpp
+  Code wird generiert...
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\image.h(164): warning C4715: "cg::image<2>::index": Nicht alle Steuerelementpfade geben einen Wert zurück.
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\image.h(164): warning C4715: "cg::image<1>::index": Nicht alle Steuerelementpfade geben einen Wert zurück.
+c:\users\lukas\documents\github\cg\uebung3\skeleton\aufgaben\image.h(164): warning C4715: "cg::image<0>::index": Nicht alle Steuerelementpfade geben einen Wert zurück.
+  Aufgaben.vcxproj -> C:\Users\Lukas\Documents\GitHub\cg\uebung3\Skeleton\x64\Debug\Aufgaben.exe
+  Aufgaben.vcxproj -> C:\Users\Lukas\Documents\GitHub\cg\uebung3\Skeleton\x64\Debug\Aufgaben.pdb (Partial PDB)
