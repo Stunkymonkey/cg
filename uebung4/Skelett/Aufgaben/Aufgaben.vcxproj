@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{21E3C6BE-07E5-467D-AB96-3C7784140B40}</ProjectGuid>
     <RootNamespace>Aufgaben</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
     <ProjectName>ImageViewer</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,6 +139,7 @@
     <ClInclude Include="glowl\GLSLProgram.hpp" />
     <ClInclude Include="glowl\Texture.hpp" />
     <ClInclude Include="glowl\Texture2D.hpp" />
+    <ClInclude Include="ImageFilter.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_impl_glfw_gl3.h" />
@@ -149,12 +150,12 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageBase.h" />
     <ClInclude Include="ImageConverter.h" />
-    <ClInclude Include="ImageFilter.h" />
     <ClInclude Include="ImageIO.h" />
     <ClInclude Include="ImageTraits.h" />
     <ClInclude Include="ImageViewer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="imgui.ini" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

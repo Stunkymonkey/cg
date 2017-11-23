@@ -365,7 +365,19 @@ namespace cg
 		// Use it to filter the original image and store the result in img.
 		// Input value for the kernel can be accessed via m_extents and m_sigma.
 		image<color_space_t::RGBA> img = m_original_image;
-
+		filter::Kernel k = filter::build2DGaussianKernel();
+		// iterate over every pixel
+		// problem is, we were not able to compile because of intel
+		for(int i; i = img.get_height(); i++) {
+			for (int j; j = img.get_width(); j++) {
+				//iterate over kernel
+				for (int l = k.getHorizontalRange()[0]; l <= k.getHorizontalRange()[1]; l++) {
+					for (int m = k.getVerticalRange()[0]; m <= k.getVerticalRange()[1]; m++) {
+						img[j, i] +=  k.getDataIndex(m, l) * m_original_image[i+l, j+m];
+					}
+				}
+			}
+		}
 
 		TextureLayout img_layout(GL_RGBA32F, m_original_image.get_width(), m_original_image.get_height(), 1, GL_RGBA, GL_FLOAT, 1);
 		img_layout.int_parameters.push_back({ GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER });
@@ -383,7 +395,21 @@ namespace cg
 		// Use them to filter the original image and store the result in img.
 		// Input value for the kernels can be accessed via m_extents and m_sigma.
 		image<color_space_t::RGBA> img = m_original_image;
-
+		filter::Kernel k1 = filter::build1DHorizontalGaussianKernel();
+		filter::Kernel k2 = filter::build1DVerticalGaussianKernel();
+		// iterate over every pixel
+		// problem is, we were not able to compile because of intel
+		for(int i; i = img.get_height(); i++) {
+			for (int j; j = img.get_width(); j++) {
+				//iterate over kernel
+				for (int l = k.getHorizontalRange()[0]; l <= k.getHorizontalRange()[1]; l++) {
+					img[j, i] +=  k.getDataIndex(l) * m_original_image[i+l, j];
+				}
+				for (int m = k.getVerticalRange()[0]; m <= k.getVerticalRange()[1]; m++) {
+					img[j, i] +=  k.getDataIndex(m) * m_original_image[i, j+m];
+				}
+			}
+		}
 
 		TextureLayout img_layout(GL_RGBA32F, m_original_image.get_width(), m_original_image.get_height(), 1, GL_RGBA, GL_FLOAT, 1);
 		img_layout.int_parameters.push_back({ GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER });
@@ -442,6 +468,19 @@ namespace cg
 		// Generate an edge detection filter kernel.
 		// Use it to filter the original image and store the result in img.
 		image<color_space_t::RGBA> img = m_original_image;
+		filter::Kernel k = filter::buildEdgeDetectionKernel();
+		// iterate over every pixel
+		// problem is, we were not able to compile because of intel
+		for(int i; i = img.get_height(); i++) {
+			for (int j; j = img.get_width(); j++) {
+				//iterate over kernel
+				for (int l = k.getHorizontalRange()[0]; l <= k.getHorizontalRange()[1]; l++) {
+					for (int m = k.getVerticalRange()[0]; m <= k.getVerticalRange()[1]; m++) {
+						img[j, i] += k.getDataIndex(m, l) * m_original_image[i+l, j+m];
+					}
+				}
+			}
+		}
 
 
 		TextureLayout img_layout(GL_RGBA32F, m_original_image.get_width(), m_original_image.get_height(), 1, GL_RGBA, GL_FLOAT, 1);

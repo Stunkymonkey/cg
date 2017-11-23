@@ -50,7 +50,15 @@ void main()
     //
     // Check https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/imageLoad.xhtml
     // for details regarding the imageLoad function.
-	
+	result = exp(-(i*i)/(double)(2*sigma*sigma));
+    for (int l = kernel.getHorizontalRange()[0]; l <= kernel.getHorizontalRange()[1]; l++) {
+        img[j, i] += imageLoad(kernel_tx2D, (global_pos.x+l, global_pos.y)).x *
+                                imageLoad(src_tx2D, (global_pos.x+l, global_pos.y)));
+    }
+    for (int l = kernel.getVerticalRange()[0]; l <= kernel.getVerticalRange()[1]; l++) {
+        img[j, i] += imageLoad(kernel_tx2D, (global_pos.x, global_pos.y+l)).x *
+                                imageLoad(src_tx2D, (global_pos.x, global_pos.y+l)));
+    }
 
     imageStore(tgt_tx2D, global_pos.xy, pixel_value);
 }

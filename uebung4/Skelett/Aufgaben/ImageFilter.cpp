@@ -9,11 +9,23 @@ namespace cg
 			/** Computes and stores gaussian values in given kernel for the given sigma value */
 			void setGaussianValues(Kernel& k, float sigma)
 			{
-				///////
-				// TODO
 				// Implement computation of gaussian values.
 				// Store values in k.
-
+				// problem is, we were not able to compile because of intel
+				float const M_PI = 3.1417;
+				int x_middle = k.getHorizontalRange().first / 2;
+				int y_middle = k.getVerticalRange().second / 2;
+				int x_distance = 0;
+				int y_distance = 0;
+				float value = 0.0;
+				for (int i = k.getHorizontalRange().first; i <= k.getHorizontalRange().second; i++) {
+					for (int j = k.getVerticalRange().first; j <= k.getVerticalRange().second; j++) {
+						x_distance = std::abs(j - x_middle);
+						y_distance = std::abs(j - y_middle);
+						value = (1.0f / (float)std::sqrt(2 * M_PI *sigma)) * std::pow(exp(1.0), ((-(std::pow(2, x_distance)) + (std::pow(2, y_distance)))/2*std::pow(2, sigma)));
+						k.setValue(j, i, value);
+					}
+				}
 				
 			}
 		}
@@ -99,9 +111,16 @@ namespace cg
 		{
 			Kernel k(std::make_pair(1, 1));
 			
-			///////
-			// TODO
 			// Set to edge detection kernel
+			k.setValue(0, 0, 0);
+			k.setValue(1, 0, -1);
+			k.setValue(2, 0, 0);
+			k.setValue(0, 1, -1);
+			k.setValue(1, 1, 4);
+			k.setValue(2, 1, -1);
+			k.setValue(0, 2, 0);
+			k.setValue(1, 2, -1);
+			k.setValue(2, 2, 0);
 
 			return k;
 		}
