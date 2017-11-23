@@ -39,9 +39,10 @@ namespace cg
 
 		float Kernel::getValue(int x, int y) const
 		{
-			// TODO check range
-
-			return m_data[getDataIndex(x, y)];
+			if(x > -1 && y > -1 && x m_data.length < &&  < m_data.length)
+			{
+				return m_data[getDataIndex(x, y)];
+			}
 		}
 
 		float* Kernel::data()
@@ -71,11 +72,11 @@ namespace cg
 
 		size_t Kernel::getDataIndex(int x, int y) const
 		{
-			//TODO bound check
-
-			x += std::get<0>(m_extents);
-			y += std::get<1>(m_extents);
-
+			if(x > -1 && y > -1 && x m_data.length < &&  < m_data.length)
+			{
+				x += std::get<0>(m_extents);
+				y += std::get<1>(m_extents);
+			}
 			return y * (std::get<0>(m_extents) * 2 + 1) + x;
 		}
 
