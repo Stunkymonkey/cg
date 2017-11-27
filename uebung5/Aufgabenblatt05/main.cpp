@@ -64,6 +64,10 @@ Vec3f castRay(const Ray &ray, const std::vector<std::unique_ptr<SceneObject>> &o
     //
     // END TODO
     //////////////
+    if trace(ray) {
+        //calculate the hitposition on object
+        //get color of object on position and save it in hitColor
+    }
 
     return hitColor;
 }
@@ -95,6 +99,17 @@ void render(const Vec2i viewport, const std::vector<std::unique_ptr<SceneObject>
     //
     // END TODO
     //////////////
+    int height = ;
+    int width = ;
+    for ( y = 0; y < height ; y++ ) {
+        for ( x = 0; x < width ; x++ ) {
+            u = l + (r - l) * (x + 0.5) / width;
+            v = t + (b - t) * (y + 0.5) / height;
+            new_ray = usonstwas * u + vsonstwas * v + d * w;
+            r = new Ray(camera_pos, direction);
+            castRay(r, objects);
+        }
+    }
 
     // save the framebuffer an a PPM image
     saveAsPPM("./result.ppm", viewport, framebuffer);
