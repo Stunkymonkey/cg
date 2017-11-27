@@ -35,6 +35,9 @@ bool trace(const Ray &ray,
     //
     // END TODO
     /////////////
+	for (auto object = objects.begin(); object != objects.end(); ++object) {
+		
+	}
 
     return (hitObject != nullptr);
 }
@@ -64,10 +67,12 @@ Vec3f castRay(const Ray &ray, const std::vector<std::unique_ptr<SceneObject>> &o
     //
     // END TODO
     //////////////
-    if trace(ray) {
-        //calculate the hitposition on object
-        //get color of object on position and save it in hitColor
-    }
+	if (trace(ray, objects, t, hitObject)) {
+		//calculate the hitposition on object
+		//get color of object and save it in hitColor
+		//save hit object
+		//save hit distance
+	}
 
     return hitColor;
 }
@@ -99,14 +104,21 @@ void render(const Vec2i viewport, const std::vector<std::unique_ptr<SceneObject>
     //
     // END TODO
     //////////////
-    int height = ;
-    int width = ;
-    for ( y = 0; y < height ; y++ ) {
-        for ( x = 0; x < width ; x++ ) {
-            u = l + (r - l) * (x + 0.5) / width;
-            v = t + (b - t) * (y + 0.5) / height;
-            new_ray = usonstwas * u + vsonstwas * v + d * w;
-            r = new Ray(camera_pos, direction);
+    int width = viewport.x;
+	int height = viewport.y;
+
+	const Vec3f e = Vec3f(0.f, 0.f, -1.f);
+	const Vec3f u_vec = Vec3f(1.f, 0.f, 0.f);
+	const Vec3f v_vec = Vec3f(0.f, 1.f, 0.f);
+	const Vec3f w_vec = Vec3f(0.f, 0.f, 1.f);
+
+    for ( int y = 0; y < height ; y++ ) {
+        for ( int x = 0; x < width ; x++ ) {
+            int u = l + (r - l) * (x + 0.5) / width;
+            int v = t + (b - t) * (y + 0.5) / height;
+			Ray r = Ray();
+			r.origin = cameraPos;
+			r.dir = e + u * u_vec + v * v_vec + d * w_vec;
             castRay(r, objects);
         }
     }
