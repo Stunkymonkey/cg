@@ -38,11 +38,37 @@ bool Sphere::intersect(const Ray &ray, float &t) const
     // TODO 2.2
     // Implement a ray-sphere intersection test.
     // cf. lecture slides 46ff
-    //
-    return false;
-    //
+	//
     // END TODO
     ///////////
+
+	float a = ray.dir.dot(ray.dir);
+	float b = (2 * ray.dir).dot(ray.origin - this->_center);
+	float c = (ray.origin - this->_center).dot((ray.origin - this->_center)) - (this->_radius * this->_radius);
+
+	float D = pow(b, 2) - 4 * a * c;
+
+	if (D > 0)
+	{
+		float t1 = (-b + sqrt(D)) / (2 * a);
+		float t2 = (-b - sqrt(D)) / (2 * a);
+		if (t1 < t2) {
+			t = t1;
+		}
+		else {
+			t = t2;
+		}
+		return true;
+	}
+	else if (D == 0)
+	{
+		t = -b / (2*a);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 /**

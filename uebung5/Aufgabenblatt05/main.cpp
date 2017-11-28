@@ -3,8 +3,8 @@
 #include "sceneobject.h"
 
 // TODO set the test according to your current exercise.
-#define TEST_RAY_GENERATION 1
-#define TEST_SPHERE_INTERSECT 0
+#define TEST_RAY_GENERATION 0
+#define TEST_SPHERE_INTERSECT 1
 
 // random number generation
 std::uniform_real_distribution<> distrib(-0.5, 0.5);
@@ -35,10 +35,13 @@ bool trace(const Ray &ray,
     //
     // END TODO
     /////////////
+	float tmp;
 	for (auto object = objects.begin(); object != objects.end(); ++object) {
-		
+		if (object._Ptr->get()->intersect(ray, tmp) && tmp < t_near) {
+			hitObject = object._Ptr->get();
+			t_near = tmp;
+		}
 	}
-
     return (hitObject != nullptr);
 }
 
@@ -68,12 +71,8 @@ Vec3f castRay(const Ray &ray, const std::vector<std::unique_ptr<SceneObject>> &o
     // END TODO
     //////////////
 	if (trace(ray, objects, t, hitObject)) {
-		//calculate the hitposition on object
-		//get color of object and save it in hitColor
-		//save hit object
-		//save hit distance
+		hitColor = hitObject->getSurfaceColor(ray.origin + (ray.dir * t));
 	}
-
     return hitColor;
 }
 
@@ -107,19 +106,19 @@ void render(const Vec2i viewport, const std::vector<std::unique_ptr<SceneObject>
     int width = viewport.x;
 	int height = viewport.y;
 
-	const Vec3f e = Vec3f(0.f, 0.f, -1.f);
+	//const Vec3f e = Vec3f(0.f, 0.f, -1.f);
 	const Vec3f u_vec = Vec3f(1.f, 0.f, 0.f);
 	const Vec3f v_vec = Vec3f(0.f, 1.f, 0.f);
 	const Vec3f w_vec = Vec3f(0.f, 0.f, 1.f);
 
-    for ( int y = 0; y < height ; y++ ) {
-        for ( int x = 0; x < width ; x++ ) {
-            int u = l + (r - l) * (x + 0.5) / width;
-            int v = t + (b - t) * (y + 0.5) / height;
+    for (float y = 0; y < height ; y++ ) {
+        for (float x = 0; x < width ; x++ ) {
+			float u = l + (r - l) * (x + 0.5) / width;
+			float v = t + (b - t) * (y + 0.5) / height;
 			Ray r = Ray();
 			r.origin = cameraPos;
-			r.dir = e + u * u_vec + v * v_vec + d * w_vec;
-            castRay(r, objects);
+			r.dir = u * u_vec + v * v_vec + d * w_vec;
+            framebuffer[y * width + x] = castRay(r, objects);
         }
     }
 
