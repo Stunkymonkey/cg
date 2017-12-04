@@ -167,6 +167,7 @@ static float dot(Vec3f const& v, Vec3f const& w)
 //
 static Vec3f reflect(Vec3f const& v, Vec3f const& n)
 {
+	return (((2 * n) * (n * v)) - v);
 	/*TODO: replace*/ return v; /*TODO: replace*/
 }
 

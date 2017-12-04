@@ -23,6 +23,14 @@ Vec3f computePhongLighting(
 	Vec3f const& light_color,				//< color of the light source
 	float light_intensity)					//< intensity of the light source
 {
+	Vec3f ambient = std::get<0>(phong_coeff) * light_intensity;
+	Vec3f diffus = std::get<1>(phong_coeff) * light_intensity * (std::get<3>(phong_coeff), light_direction);
+	Vec3f spekular = std::get<2>(phong_coeff) * light_intensity;
+	for (int i = 0; i < std::get<3>(phong_coeff); i++)
+	{
+		spekular = spekular * reflect(light_direction, surface_normal) * view_direction;
+	}
+	return ambient + diffus + spekular;
 	/*TODO: replace*/ return Vec3f(); /*TODO: replace*/
 }
 
