@@ -105,11 +105,39 @@ Vec3f castRay(const Ray &ray, const std::vector<std::unique_ptr<SceneObject>> &o
 		//
 		//		For a more realistic image, use inverse square attentuation for the light intensity.
 		//
-		for (auto const& value : lights) {
+		
+		hitColor = hitObject->getSurfaceColor(p_hit); 
+		//hitColor = Vec3f(1.0,1.0,1.0);
+
+		for (auto const& licht : lights) {
+			const SceneObject *hitLightObject = nullptr;
+			float tLightSource = std::numeric_limits<float>::max();
+			Ray rayToLight = Ray();
 			
+			rayToLight.origin = p_hit;
+			rayToLight.dir = licht.getPosition() - p_hit;
+		
+			if (trace(rayToLight, objects, tLightSource, hitLightObject))
+			{
+				//mache wenig licht  = schatten
+				//Vec3f p_hitOtherObject = rayToLight.origin + rayToLight.dir * tLightSource;
+				hitColor -= hitLightObject->getSurfaceColor(p_hit) *0.1;
+			}
+			else
+			{
+				hitColor += hitObject->getSurfaceColor(p_hit) *0.1;
+				/*hitColor += computePhongLighting(
+					Vec3f const& view_direction,			//< direction from surface point to camera origin
+					Vec3f const& surface_normal,			//< normal vector at surface point
+					Vec3f const& light_direction,			//< direction from surface point to light source
+					PhongCoefficients const& phong_coeff,	//< phong coefficient k_a,k_d,k_s and n
+					Vec3f const& light_color,				//< color of the light source
+					float light_intensity);
+				//mache viel licht.
+				//TODo*/
+			}
 		}
 
-		/*TODO: replace*/ hitColor = hitObject->getSurfaceColor(p_hit); /*TODO: replace*/
 
 		//////////
 		// TODO 4:
