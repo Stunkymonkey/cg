@@ -105,6 +105,9 @@ Vec3f castRay(const Ray &ray, const std::vector<std::unique_ptr<SceneObject>> &o
 		//
 		//		For a more realistic image, use inverse square attentuation for the light intensity.
 		//
+		for (auto const& value : lights) {
+			
+		}
 
 		/*TODO: replace*/ hitColor = hitObject->getSurfaceColor(p_hit); /*TODO: replace*/
 
