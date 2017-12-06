@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\glowl">
+      <UniqueIdentifier>{b3a92666-48a5-4a27-93a0-9bdce0128763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\glowl">
+      <UniqueIdentifier>{eb874392-8d6e-4b89-800f-794339565331}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\glad">
+      <UniqueIdentifier>{837788e7-091b-4371-a7d1-43c480c227ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\glad">
+      <UniqueIdentifier>{8bf0ba9d-5359-454f-b3ec-41ff64409c31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\imgui">
+      <UniqueIdentifier>{664f514f-8d67-4a72-9486-19c3d75d7da7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\imgui">
+      <UniqueIdentifier>{83e247b2-2112-4222-b432-0dc36bfd0afd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Image">
+      <UniqueIdentifier>{582db0b0-8821-49c9-92b1-be9ca5690f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Image">
+      <UniqueIdentifier>{510011cf-f4de-401c-a42a-1e73ff97d302}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scene">
+      <UniqueIdentifier>{96014de7-2ca0-4396-8099-3f1d2d34b6c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene">
+      <UniqueIdentifier>{aa06d817-03ff-4f3c-a63c-205047af81dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scene\Objects">
+      <UniqueIdentifier>{d092efa1-e81a-46e0-927d-48c46418f0fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scene\Lights">
+      <UniqueIdentifier>{14245b71-3ae3-415c-ac00-f1ec60dc5d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene\Lights">
+      <UniqueIdentifier>{70bb4dde-9ef9-418f-9dcc-a3a4c3613956}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene\Objects">
+      <UniqueIdentifier>{540278fc-67e6-4931-a2ce-d19e6437d75f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glowl\Texture2D.cpp">
+      <Filter>Source Files\glowl</Filter>
+    </ClCompile>
+    <ClCompile Include="glowl\GLSLProgram.cpp">
+      <Filter>Source Files\glowl</Filter>
+    </ClCompile>
+    <ClCompile Include="glad\src\glad.c">
+      <Filter>Source Files\glad</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_glfw_gl3.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Rasterizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Image\ImageBase.cpp">
+      <Filter>Source Files\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Image\ImageIO.cpp">
+      <Filter>Source Files\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Image\ImageViewer.cpp">
+      <Filter>Source Files\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Camera.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Object.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Lights\AmbientLight.cpp">
+      <Filter>Source Files\Scene\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Lights\LightObject.cpp">
+      <Filter>Source Files\Scene\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Lights\PointLight.cpp">
+      <Filter>Source Files\Scene\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Objects\Cube.cpp">
+      <Filter>Source Files\Scene\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Objects\Sphere.cpp">
+      <Filter>Source Files\Scene\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Objects\Triangle.cpp">
+      <Filter>Source Files\Scene\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Objects\SceneObject.cpp">
+      <Filter>Source Files\Scene\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Objects\Container.cpp">
+      <Filter>Source Files\Scene\Objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="glowl\Texture.hpp">
+      <Filter>Header Files\glowl</Filter>
+    </ClInclude>
+    <ClInclude Include="glowl\Texture2D.hpp">
+      <Filter>Header Files\glowl</Filter>
+    </ClInclude>
+    <ClInclude Include="glowl\GLSLProgram.hpp">
+      <Filter>Header Files\glowl</Filter>
+    </ClInclude>
+    <ClInclude Include="glad\include\glad\glad.h">
+      <Filter>Header Files\glad</Filter>
+    </ClInclude>
+    <ClInclude Include="glad\include\KHR\khrplatform.h">
+      <Filter>Header Files\glad</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_impl_glfw_gl3.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_internal.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\stb_rect_pack.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\stb_textedit.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\stb_truetype.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imconfig.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Rasterizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image\Image.h">
+      <Filter>Header Files\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Image\ImageBase.h">
+      <Filter>Header Files\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Image\ImageIO.h">
+      <Filter>Header Files\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Image\ImageTraits.h">
+      <Filter>Header Files\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Image\ImageViewer.h">
+      <Filter>Header Files\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Camera.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Object.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Lights\AmbientLight.h">
+      <Filter>Header Files\Scene\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Lights\LightObject.h">
+      <Filter>Header Files\Scene\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Lights\PointLight.h">
+      <Filter>Header Files\Scene\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Objects\Cube.h">
+      <Filter>Header Files\Scene\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Objects\Sphere.h">
+      <Filter>Header Files\Scene\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Objects\SceneObject.h">
+      <Filter>Header Files\Scene\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Objects\Triangle.h">
+      <Filter>Header Files\Scene\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Objects\Container.h">
+      <Filter>Header Files\Scene\Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
