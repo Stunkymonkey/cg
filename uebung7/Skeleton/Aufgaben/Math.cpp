@@ -198,9 +198,31 @@ cg::vec3 cg::calculateBarycentricCoords(const Triangle2D& triangle, const cg::Po
 	// TODO
 	// Calculate the barycentric coordinates of a triangle.
 	// Hint: You can safely assume, that a given position is always inside the triangle.
+	float Area_a = get_Area(triangle.points[1].position, triangle.points[2].position, position);
+	float Area_b = get_Area(triangle.points[2].position, triangle.points[0].position, position);
+	float Area_c = get_Area(triangle.points[0].position, triangle.points[1].position, position);
 
+	const float d = Area_a + Area_b + Area_c;
 
-	return vec3(0.3f, 0.3f, 0.3f);
+	Area_a = Area_a / d;
+	Area_b = Area_b / d;
+	Area_c = Area_c / d;
+
+	float r, g, b;
+	r = Area_a * triangle.points[0].color.r + Area_b * triangle.points[1].color.r + Area_c * triangle.points[2].color.r;
+	g = Area_a * triangle.points[0].color.g + Area_b * triangle.points[1].color.g + Area_c * triangle.points[2].color.g;
+	b = Area_a * triangle.points[0].color.b + Area_b * triangle.points[1].color.b + Area_c * triangle.points[2].color.b;
+
+	return vec3(r, g, b);
+}
+
+float cg::get_Area(cg::Point2D A, cg::Point2D B, cg::Point2D C) {
+	float s, a, b, c;
+	a = sqrt((A.x - B.x) * (A.x - B.x) + (A.y - B.y) * (A.y - B.y));
+	b = sqrt((C.x - B.x) * (C.x - B.x) + (C.y - B.y) * (C.y - B.y));
+	c = sqrt((A.x - C.x) * (A.x - C.x) + (A.y - C.y) * (A.y - C.y));
+	s = (a + b + c) / 2.0f;
+	return sqrt(s * (s-a) * (s - b) * (s - c));
 }
 
 cg::Point3D cg::sphericalToCartesian(const float r, const float teta, const float phi)
@@ -210,6 +232,5 @@ cg::Point3D cg::sphericalToCartesian(const float r, const float teta, const floa
 	// Convert the spherical coordinates to cartesian coordinates.
 	// Use the ISO convention, where teta is in [0, pi) and phi is in [0, 2*pi).
 
-
-	return Point3D(0.0f, 0.0f, 0.0f);
+	return Point3D(r*sin(teta)*cos(phi), r*sin(teta)*sin(phi), r*cos(teta));
 }

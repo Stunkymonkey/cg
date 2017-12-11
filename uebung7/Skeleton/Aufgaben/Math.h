@@ -98,6 +98,7 @@ namespace cg
 	// Functions for triangles
 	bool pointInTriangle(const Triangle2D& triangle, const Point2D& position);
 	vec3 calculateBarycentricCoords(const Triangle2D& triangle, const Point2D& position);
+	float get_Area(cg::Point2D A, cg::Point2D B, cg::Point2D C);
 
 	// Coordinate system
 	Point3D sphericalToCartesian(float r, float teta, float phi);

@@ -154,7 +154,9 @@ void cg::Rasterizer::drawObject(const std::shared_ptr<cg::SceneObject> object, c
 			///////
 			// TODO
 			// Transform point's position and normal to world space.
-
+			vec4 temp = vec4(point.position, 1.0f);
+			point_world = global_trafo * temp;
+			normal_world = point.normal;
 
 			auto color = black();
 
@@ -177,7 +179,12 @@ void cg::Rasterizer::drawObject(const std::shared_ptr<cg::SceneObject> object, c
 						// and add it to the color already calculated from previous light sources.
 						// All relevant information from the light source is stored in colorInfo.
 						// Hint: The direction of the ray is from the light source to the object.
-
+						float dot = colorInfo.ray.x*point.normal.x + colorInfo.ray.y*point.normal.y + colorInfo.ray.z*point.normal.z;
+						float lenSq1 = colorInfo.ray.x*colorInfo.ray.x + colorInfo.ray.y*colorInfo.ray.y + colorInfo.ray.z*colorInfo.ray.z;
+						float lenSq2 = point.normal.x*point.normal.x + point.normal.y*point.normal.y + point.normal.z*point.normal.z;
+						float angle = acos(dot / sqrt(lenSq1 * lenSq2));
+						float norm_angle = angle / cg::pi();
+						color += point.color * colorInfo.color * colorInfo.intensity * cos(norm_angle) * 0.1f;
 					}
 				}
 			}
@@ -291,7 +298,27 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 	///////
 	// TODO
 	// Implement Bresenham's line algorithm for rasterizing a single line.
+	const int x_s = static_cast<int>(std::round(point_start.position.x));
+	const int y_s = static_cast<int>(std::round(point_start.position.y));
 
+	const int x_e = static_cast<int>(std::round(point_end.position.x));
+	const int y_e = static_cast<int>(std::round(point_end.position.y));
+
+	int y = y_s;
+	float d = F(x_s, y_s, x_s + 1, y_s + 0.5f, x_e, y_e);
+	for (int x = x_s; x <= x_e; x++) {
+		Color c = black();
+
+		drawPixel(Point3D(x, y, z), c);
+		if (d < 0) {
+			y++;
+			d += (x_e - x_s) + (y_s - y_e);
+		}
+		else {
+			d += (y_s - y_e);
+		}
+	}
+	F(d, );
 }
 
 void cg::Rasterizer::drawPixel(const Point3D& point, Color color)
