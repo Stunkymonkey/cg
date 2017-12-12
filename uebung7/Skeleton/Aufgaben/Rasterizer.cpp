@@ -306,30 +306,30 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 	int y1 = static_cast<int>(std::round(point_end.position.y));
 	int z1 = static_cast<int>(std::round(point_end.position.z));
 
-	int sx, sy, sz;
+	int direction_x, direction_y, direction_z;
 
-	int dx = abs(x1-x0);
+	int distance_x = abs(x1-x0);
 	if (x0<x1) {
-		sx = 1;
+		direction_x = 1;
 	} else {
-		sx = -1;
+		direction_x = -1;
 	}
 
-	int dy = abs(y1-y0);
+	int distance_y = abs(y1-y0);
 	if (y0<y1) {
-		sy = 1;
+		direction_y = 1;
 	} else {
-		sy = -1;
+		direction_y = -1;
 	}
 
-	int dz = abs(z1-z0);
+	int distance_z = abs(z1-z0);
 	if (z0<z1) {
-		sz = 1;
+		direction_z = 1;
 	} else {
-		sz = -1;
+		direction_z = -1;
 	}
 
-	int distance_max = std::max(std::max(dx,dy),dz);
+	int distance_max = std::max(std::max(distance_x,distance_y),distance_z);
 	int i = distance_max;
 	x1 = y1 = z1 = distance_max/2;
 
@@ -344,24 +344,24 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 			break;
 		}
 
-		x1 -= dx;
+		x1 -= distance_x;
 		if (x1 < 0)
 		{
 			x1 += distance_max;
-			x0 += sx;
+			x0 += direction_x;
 		}
 
-		y1 -= dy;
+		y1 -= distance_y;
 		if (y1 < 0)
 		{
 			y1 += distance_max;
-			y0 += sy;
+			y0 += direction_y;
 		}
 
-		z1 -= dz;
+		z1 -= distance_z;
 		if (z1 < 0) {
 			z1 += distance_max;
-			z0 += sz;
+			z0 += direction_z;
 		}
 	}
 }
