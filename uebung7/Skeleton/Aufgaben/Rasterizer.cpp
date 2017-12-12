@@ -156,7 +156,8 @@ void cg::Rasterizer::drawObject(const std::shared_ptr<cg::SceneObject> object, c
 			// Transform point's position and normal to world space.
 			vec4 temp = vec4(point.position, 1.0f);
 			point_world = global_trafo * temp;
-			normal_world = point.normal;
+			temp = vec4(point.normal, 0.0f);
+			normal_world = vec3(temp.x, temp.y, temp.z);
 
 			auto color = black();
 
@@ -179,12 +180,12 @@ void cg::Rasterizer::drawObject(const std::shared_ptr<cg::SceneObject> object, c
 						// and add it to the color already calculated from previous light sources.
 						// All relevant information from the light source is stored in colorInfo.
 						// Hint: The direction of the ray is from the light source to the object.
-						float dot = colorInfo.ray.x*point.normal.x + colorInfo.ray.y*point.normal.y + colorInfo.ray.z*point.normal.z;
+						float dot = (-colorInfo.ray.x*point.normal.x) + (-colorInfo.ray.y*point.normal.y) + (-colorInfo.ray.z*point.normal.z);
 						float lenSq1 = colorInfo.ray.x*colorInfo.ray.x + colorInfo.ray.y*colorInfo.ray.y + colorInfo.ray.z*colorInfo.ray.z;
 						float lenSq2 = point.normal.x*point.normal.x + point.normal.y*point.normal.y + point.normal.z*point.normal.z;
-						float angle = acos(dot / sqrt(lenSq1 * lenSq2));
-						float norm_angle = angle / cg::pi();
-						color += point.color * colorInfo.color * colorInfo.intensity * cos(norm_angle) * (1.0f/(0.001f + sqrt(lenSq1)*sqrt(lenSq1)));
+						float cos_angle = dot / sqrt(lenSq1) * sqrt(lenSq2);
+						//float norm_angle = angle / cg::pi();
+						color += point.color * colorInfo.color * colorInfo.intensity * cos_angle * (1.0f/((0.001f + sqrt(lenSq1))*sqrt(lenSq1)));
 					}
 				}
 			}
@@ -232,9 +233,9 @@ void cg::Rasterizer::drawTriangle(const Triangle& triangle)
 void cg::Rasterizer::rasterizePoints(const Triangle& triangle)
 {
 	// Draw pixels if they are in front of the camera
-	if (triangle.points[0].validXY && triangle.points[0].validZ) drawPixel(triangle.points[0].position, triangle.points[0].color);
-	if (triangle.points[1].validXY && triangle.points[1].validZ) drawPixel(triangle.points[1].position, triangle.points[1].color);
-	if (triangle.points[2].validXY && triangle.points[2].validZ) drawPixel(triangle.points[2].position, triangle.points[2].color);
+	if (triangle.points[0].validXY && triangle.points[0].validZ) setPixel(triangle.points[0].position, triangle.points[0].color);
+	if (triangle.points[1].validXY && triangle.points[1].validZ) setPixel(triangle.points[1].position, triangle.points[1].color);
+	if (triangle.points[2].validXY && triangle.points[2].validZ) setPixel(triangle.points[2].position, triangle.points[2].color);
 }
 
 void cg::Rasterizer::drawWireframe(const Triangle& triangle)
@@ -286,7 +287,7 @@ void cg::Rasterizer::rasterizeFilled(const Triangle& triangle)
 					const auto z = weights[0] * triangle.points[0].position.z + weights[1] * triangle.points[1].position.z + weights[2] * triangle.points[2].position.z;
 					const auto color = weights[0] * triangle.points[0].color + weights[1] * triangle.points[1].color + weights[2] * triangle.points[2].color;
 
-					drawPixel(Point3D(static_cast<float>(x), static_cast<float>(y), z), color);
+					setPixel(Point3D(static_cast<float>(x), static_cast<float>(y), z), color);
 				}
 			}
 		}
@@ -298,7 +299,7 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 	///////
 	// TODO
 	// Implement Bresenham's line algorithm for rasterizing a single line.
-	const int x_s = static_cast<int>(std::round(point_start.position.x));
+/*	const int x_s = static_cast<int>(std::round(point_start.position.x));
 	const int y_s = static_cast<int>(std::round(point_start.position.y));
 
 	const int x_e = static_cast<int>(std::round(point_end.position.x));
@@ -309,7 +310,7 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 	for (int x = x_s; x <= x_e; x++) {
 		Color c = black();
 
-		drawPixel(Point3D(x, y, z), c);
+		setPixel(Point3D(x, y, z), c);
 		if (d < 0) {
 			y++;
 			d += (x_e - x_s) + (y_s - y_e);
@@ -318,10 +319,10 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 			d += (y_s - y_e);
 		}
 	}
-	F(d, );
+	F(d, ); */
 }
 
-void cg::Rasterizer::drawPixel(const Point3D& point, Color color)
+void cg::Rasterizer::setPixel(const Point3D& point, Color color)
 {
 	const auto x = static_cast<int>(std::round(point.x));
 	const auto y = static_cast<int>(std::round(point.y));

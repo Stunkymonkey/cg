@@ -137,7 +137,7 @@ namespace cg
 		/// </summary>
 		/// <param name="point">Point</param>
 		/// <param name="color">Color</param>
-		void drawPixel(const Point3D& point, Color color);
+		void setPixel(const Point3D& point, Color color);
 
 		/// Camera
 		Camera camera;
