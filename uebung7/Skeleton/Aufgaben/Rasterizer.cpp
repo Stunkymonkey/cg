@@ -314,21 +314,24 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 	} else {
 		sx = -1;
 	}
+
 	int dy = abs(y1-y0);
 	if (y0<y1) {
 		sy = 1;
 	} else {
 		sy = -1;
 	}
+
 	int dz = abs(z1-z0);
 	if (z0<z1) {
 		sz = 1;
 	} else {
 		sz = -1;
 	}
-	int dm = std::max(std::max(dx,dy),dz);
-	int i = dm;
-	x1 = y1 = z1 = dm/2;
+
+	int distance_max = std::max(std::max(dx,dy),dz);
+	int i = distance_max;
+	x1 = y1 = z1 = distance_max/2;
 
 	Color c = white();
  
@@ -344,20 +347,20 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 		x1 -= dx;
 		if (x1 < 0)
 		{
-			x1 += dm;
+			x1 += distance_max;
 			x0 += sx;
 		}
 
 		y1 -= dy;
 		if (y1 < 0)
 		{
-			y1 += dm;
+			y1 += distance_max;
 			y0 += sy;
 		}
 
 		z1 -= dz;
 		if (z1 < 0) {
-			z1 += dm;
+			z1 += distance_max;
 			z0 += sz;
 		}
 	}
