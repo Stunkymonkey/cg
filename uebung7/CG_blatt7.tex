@@ -116,13 +116,18 @@ sin(-60) & cos(-60) & 0\\
 
 \section*{Aufgabe 5}
 \subsection*{a)}
-
+Die Translation und Rotation werden nacheinander ausgeführt, wobei die Rotation zuerst ausgeführt wird da Transformationen bei Hintereinander Ausführung von rechts nach Links ausgeführt werden.
 
 \subsection*{b)}
+Der Z-Buffer wird zur Speicherung der Z-Werte jedes einzelnen Pixels verwendet. Dazu wird zu jedem Pixel abgespeichert, in welcher Tiefe (von der Kamera der Szene ausgemessen) sich das nächste Objekt (bzw. deren Oberfläche) befindet. Die Idee ist, dass man so auf einfache Art und Weise zwei Objekte mit dem Z-Buffer vereinigen kann, da nur derjenige Teil (pro Pixel) zu sehen ist, der sich näher an der Kamera befindet.
+Problematik beim Umgang mit parallelen Berechnungen: Beim Rendern auf der GPU braucht der Z-Buffer einen großen Teil des Speichers sowie der Datenübertragungsrate.
 
 
 \subsection*{c)}
-Wenn man Clipping bei Wireframe anwendet kann es zu mehrdeutigkeiten kommen, das heißt da  Clipping alles was das Bild verlässt abscheneidet könnten mehrere Gitter übereinander liegen. Dasselbe gilt für die ausgefüllten Dreicke dort kann es auftreten das beim abschneiden nun 1 Dreieck vollkommen von einem anderen verdeckt wird.
+Beim Clipping gibt es mehrere Ansätze mit welchem dieses implementiert werden kann. Die erste Möglichkeit ist Clipping on-the-fly was so viel bedeutet wie, dass während der Rasterisierung eine Laufvariable mitläuft welche dafür sorgt, dass nichts außerhalb des Bildschirms gezeichnet wird.
+Dann gibt es noch das analytische Clipping bei dem analysiert wird wo es zu Überschneidungen kommt mit dem Bildschirmrand und dann mit verschiedenen Methoden behoben wird.
+
+Wenn man Clipping bei Wireframe anwendet kann es zu Mehrdeutigkeiten kommen, das heißt da  Clipping alles was das Bild verlässt abschneidet könnten mehrere Gitter übereinander liegen. Dasselbe gilt für die ausgefüllten Dreiecke dort kann es auftreten das beim abschneiden nun 1 Dreieck vollkommen von einem anderen verdeckt wird.
 
 
 
