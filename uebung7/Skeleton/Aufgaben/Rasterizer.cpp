@@ -330,20 +330,15 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 	}
 
 	int distance_max = std::max(std::max(distance_x,distance_y),distance_z);
-	int i = distance_max;
 	x1 = y1 = z1 = distance_max/2;
 
 	Color c = white();
- 
-	while(true) {
-		// TODO get Color
-		//c = ;
-		setPixel(Point3D(x0,y0,z0), c);
-		if (i-- == 0)
-		{
-			break;
-		}
 
+	// TODO get Color
+	//c = ;
+	setPixel(Point3D(x0,y0,z0), c);
+
+	for(int i = distance_max; i > 0; i++) {
 		x1 -= distance_x;
 		if (x1 < 0)
 		{
@@ -363,6 +358,10 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 			z1 += distance_max;
 			z0 += direction_z;
 		}
+
+		// TODO get Color
+		//c = ;
+		setPixel(Point3D(x0,y0,z0), c);
 	}
 }
 
