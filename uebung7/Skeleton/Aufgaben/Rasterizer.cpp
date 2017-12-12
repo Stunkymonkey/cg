@@ -298,27 +298,69 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 	///////
 	// TODO
 	// Implement Bresenham's line algorithm for rasterizing a single line.
-/*	const int x_s = static_cast<int>(std::round(point_start.position.x));
-	const int y_s = static_cast<int>(std::round(point_start.position.y));
+	int x0 = static_cast<int>(std::round(point_start.position.x));
+	int y0 = static_cast<int>(std::round(point_start.position.y));
+	int z0 = static_cast<int>(std::round(point_start.position.z));
 
-	const int x_e = static_cast<int>(std::round(point_end.position.x));
-	const int y_e = static_cast<int>(std::round(point_end.position.y));
+	int x1 = static_cast<int>(std::round(point_end.position.x));
+	int y1 = static_cast<int>(std::round(point_end.position.y));
+	int z1 = static_cast<int>(std::round(point_end.position.z));
 
-	int y = y_s;
-	float d = F(x_s, y_s, x_s + 1, y_s + 0.5f, x_e, y_e);
-	for (int x = x_s; x <= x_e; x++) {
-		Color c = black();
+	int sx, sy, sz;
 
-		setPixel(Point3D(x, y, z), c);
-		if (d < 0) {
-			y++;
-			d += (x_e - x_s) + (y_s - y_e);
+	int dx = abs(x1-x0);
+	if (x0<x1) {
+		sx = 1;
+	} else {
+		sx = -1;
+	}
+	int dy = abs(y1-y0);
+	if (y0<y1) {
+		sy = 1;
+	} else {
+		sy = -1;
+	}
+	int dz = abs(z1-z0);
+	if (z0<z1) {
+		sz = 1;
+	} else {
+		sz = -1;
+	}
+	int dm = std::max(std::max(dx,dy),dz);
+	int i = dm;
+	x1 = y1 = z1 = dm/2;
+
+	Color c = white();
+ 
+	while(true) {
+		// TODO get Color
+		//c = ;
+		setPixel(Point3D(x0,y0,z0), c);
+		if (i-- == 0)
+		{
+			break;
 		}
-		else {
-			d += (y_s - y_e);
+
+		x1 -= dx;
+		if (x1 < 0)
+		{
+			x1 += dm;
+			x0 += sx;
+		}
+
+		y1 -= dy;
+		if (y1 < 0)
+		{
+			y1 += dm;
+			y0 += sy;
+		}
+
+		z1 -= dz;
+		if (z1 < 0) {
+			z1 += dm;
+			z0 += sz;
 		}
 	}
-	F(d, ); */
 }
 
 void cg::Rasterizer::setPixel(const Point3D& point, Color color)
