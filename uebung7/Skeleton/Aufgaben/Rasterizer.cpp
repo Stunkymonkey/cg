@@ -184,7 +184,7 @@ void cg::Rasterizer::drawObject(const std::shared_ptr<cg::SceneObject> object, c
 						float lenSq2 = point.normal.x*point.normal.x + point.normal.y*point.normal.y + point.normal.z*point.normal.z;
 						float angle = acos(dot / sqrt(lenSq1 * lenSq2));
 						float norm_angle = angle / cg::pi();
-						color += point.color * colorInfo.color * colorInfo.intensity * cos(norm_angle) * 0.1f;
+						color += point.color * colorInfo.color * colorInfo.intensity * cos(norm_angle) * (1.0f/(0.001f + sqrt(lenSq1)*sqrt(lenSq1)));
 					}
 				}
 			}
