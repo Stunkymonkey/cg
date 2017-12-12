@@ -301,6 +301,14 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 	int y1 = static_cast<int>(std::round(point_end.position.y));
 	int z1 = static_cast<int>(std::round(point_end.position.z));
 
+	int x0_start = x0;
+	int y0_start = y0;
+	int z0_start = z0;
+
+	int x1_end = x1;
+	int y2_end = y1;
+	int z1_end = z1;
+
 	int direction_x, direction_y, direction_z;
 
 	int distance_x = abs(x1-x0);
@@ -329,11 +337,11 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 
 	Color c = white();
 
-	// TODO get Color
-	//c = ;
+	c = point_start.color;
+	float interpolation;
 	setPixel(Point3D(x0,y0,z0), c);
 
-	for(int i = distance_max; i > 0; i++) {
+	for(int i = distance_max; i > 0; i--) {
 		x1 -= distance_x;
 		if (x1 < 0)
 		{
@@ -354,8 +362,10 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 			z0 += direction_z;
 		}
 
-		// TODO get Color
-		//c = ;
+		interpolation = sqrt(pow(x0_start, 2) + pow(y0_start, 2) + pow(z0_start, 2)) /
+		sqrt(pow(x1_end - x0_start, 2)+ pow(x1_end - y0_start, 2) + pow(z1_end - z0_start, 2));
+		c = (1-interpolation) * point_start.color + interpolation * point_end.color;
+
 		setPixel(Point3D(x0,y0,z0), c);
 	}
 }
