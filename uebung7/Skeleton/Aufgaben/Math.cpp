@@ -194,8 +194,6 @@ bool cg::pointInTriangle(const cg::Triangle2D& triangle, const cg::Point2D& posi
 
 cg::vec3 cg::calculateBarycentricCoords(const Triangle2D& triangle, const cg::Point2D& position)
 {
-	///////
-	// TODO
 	// Calculate the barycentric coordinates of a triangle.
 	// Hint: You can safely assume, that a given position is always inside the triangle.
 	float Area_a = get_Area(triangle.points[1].position, triangle.points[2].position, position);
@@ -227,10 +225,7 @@ float cg::get_Area(cg::Point2D A, cg::Point2D B, cg::Point2D C) {
 
 cg::Point3D cg::sphericalToCartesian(const float r, const float teta, const float phi)
 {
-	///////
-	// TODO
 	// Convert the spherical coordinates to cartesian coordinates.
 	// Use the ISO convention, where teta is in [0, pi) and phi is in [0, 2*pi).
-
 	return Point3D(r*sin(teta)*cos(phi), r*sin(teta)*sin(phi), r*cos(teta));
 }

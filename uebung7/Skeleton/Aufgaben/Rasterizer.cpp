@@ -150,9 +150,6 @@ void cg::Rasterizer::drawObject(const std::shared_ptr<cg::SceneObject> object, c
 
 			vec4 point_world = zeroVec4();
 			vec3 normal_world = zeroVec3();
-
-			///////
-			// TODO
 			// Transform point's position and normal to world space.
 			vec4 temp = vec4(point.position, 1.0f);
 			point_world = global_trafo * temp;
@@ -174,8 +171,6 @@ void cg::Rasterizer::drawObject(const std::shared_ptr<cg::SceneObject> object, c
 					}
 					else
 					{
-						///////
-						// TODO
 						// Calculate the illumination of the object according to Lambert's law,
 						// and add it to the color already calculated from previous light sources.
 						// All relevant information from the light source is stored in colorInfo.
@@ -329,8 +324,8 @@ void cg::Rasterizer::rasterizeLine(const cg::Triangle::Point& point_start, const
 		direction_z = -1;
 	}
 
-	int distance_max = std::max(std::max(distance_x,distance_y),distance_z);
-	x1 = y1 = z1 = distance_max/2;
+	int distance_max = std::max(distance_x, std::max(distance_y, distance_z));
+	x1 = y1 = z1 = distance_max / 2;
 
 	Color c = white();
 
