@@ -191,6 +191,8 @@ void UpdateTransform()
      * der OpenGL-Funktion glUniformMatrix4fv an den Shader. Diese soll dabei den in der
      * Aufgabenstellung spezifizierten Effekt erzielen.
      */
+	glm::mat4 trans = glm::scale(glm::mat4(1.0f), glm::vec3(float(g_window_height) / g_window_width, 1.0f , 1.0f));
+	glUniformMatrix4fv(glGetUniformLocation(g_shader_program, "transform"), 1, GL_FALSE, &trans[0][0]);
 
     glUseProgram(0);
 }
