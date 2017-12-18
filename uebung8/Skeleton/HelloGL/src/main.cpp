@@ -137,17 +137,22 @@ void InitRenderer()
      * Object (das einen Buffer auf der GPU repräsentiert) zu erstellen. Das Handle zum Buffer soll
      * dabei in g_triangle_vbo abgelegt werden.
      */
+	glGenBuffers(1, &g_triangle_vbo);
 
     /*
      * TODO (zu Teilaufgabe 2): Nutzen Sie die OpenGL-Funktionen glBindBuffer und glBufferData, um
      * den Inhalt des erstellten 'vertices' Arrays in den erstellten Buffer auf die GPU zu laden.
      */
+	glBindBuffer(GL_ARRAY_BUFFER, g_triangle_vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
 
     /*
      * TODO (zu Teilaufgabe 2): Nutzen Sie die OpenGL-Funktionen glEnableVertexAttribArray und
      * glVertexAttribPointer, sodass der Vertex-Shader auf die Positionen der Vertices der Dreiecke
      * zugreifen kann.
      */
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
     // unbind vertex array object & vertex buffer object
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -234,7 +239,9 @@ GLint CompileShader(GLenum shader_type, const char *file_path)
      * Hinweis: Sollten Sie einen Pointer auf p_code an eine OpenGL-Funktion übergeben
      * müssen, erhalten Sie diesen durch &p_code
      */
-    GLint shader = 0; // TODO: set shader properly
+    GLint shader = glCreateShader(shader_type);
+	glShaderSource(shader, 1, (const GLcharARB**)&p_code, NULL);
+	glCompileShader(shader);
 
     // check if compiling succeeded
     GLint compile_success;
@@ -273,7 +280,12 @@ GLint LinkProgram(const std::vector<GLuint> &shaders)
      * Erstellen Sie das Programm und hängen Sie alle Shader an. Vergessen Sie nicht, das Programm
      * zu linken.
      */
-    GLint program = 0; // TODO: set program properly
+    GLint program = glCreateProgram(); // TODO: set program properly
+	for each (auto var in shaders)
+	{
+		glAttachShader(program, var);
+	}
+	glLinkProgram(program);
 
     // check if linking succeeded
     GLint link_success;
