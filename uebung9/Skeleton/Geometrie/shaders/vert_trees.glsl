@@ -23,9 +23,9 @@ void main() {
      *
      * TODO (zu Teilaufgabe 1.4): Implementieren Sie den Billboard-Effekt.
      */
-    mat4 model_view = per_frame.view;
+    mat4 model_view = per_frame.view;// *  * vec4(vec3(0.0), 1.0) + vec4(in_pos.x, in_pos.y, 0.0, 0.0);
 
     // output
-    gl_Position = per_frame.proj * model_view * vec4(in_pos, 1);
+    gl_Position = per_frame.proj * model_view * trees.model[gl_InstanceID] * vec4(in_pos, 1);
     frag_color = in_color;
 }

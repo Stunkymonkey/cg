@@ -166,6 +166,16 @@ void InitScene() {
      * TODO (zu Teilaufgabe 1.2): Erstellen Sie an dieser Stelle analog die Geometrie eines
      * zweidimensionalen Baumes und initialisieren Sie damit g_render_batch_tree.
      */
+	std::vector<Vertex> tree_vertices{ { { 0.0f, 0.0f, 0.0f },{ 0.54509803921f, 0.27058823529f, 0.07450980392f } },
+									   { { 1.0f, 0.0f, 0.0f },{ 0.54509803921f, 0.27058823529f, 0.07450980392f } },
+									   { { 1.0f, 1.0f, 0.0f },{ 0.54509803921f, 0.27058823529f, 0.07450980392f } },
+									   { { 0.0f, 1.0f, 0.0f },{ 0.54509803921f, 0.27058823529f, 0.07450980392f } },
+									   { { -1.0f, 1.0f, 0.0f },{ 0.0f, 0.5f, 0.0f } },
+									   { { 2.0f, 1.0f, 0.0f },{ 0.0f, 0.5f, 0.0f } },
+									   { { 0.5f, 4.0f, 0.0f },{ 0.0f, 1.0f, 0.0f } } //mega ultra super fancy spitze
+									 };
+	std::vector<uint32_t> tree_indices{ 0, 1, 2, 0, 2, 3, 4, 5, 6 };
+	g_render_batch_tree = CreateRenderBatch(tree_vertices, tree_indices);
 
 	 /*
 	 * TODO (zu Teilaufgabe 2.1): Erstellen Sie an dieser Stelle analog die Geometrie eines
@@ -400,6 +410,8 @@ void UpdateScene() {
      * TODO (zu Teilaufgabe 1.1): Schreiben Sie die View-Matrix nach g_per_frame.view und die
      * Projection-Matrix nach g_per_frame.proj.
      */
+	g_per_frame.view = glm::lookAt(g_cam_pos, cam_dir, glm::vec3(0, 1, 0));
+	g_per_frame.proj = glm::perspective(glm::radians(90.0f), float(g_window_width) / g_window_height, 0.1f, 100.0f);
 }
 
 /// Renders a frame.
