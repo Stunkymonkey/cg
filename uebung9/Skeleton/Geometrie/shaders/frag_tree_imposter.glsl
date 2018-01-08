@@ -16,5 +16,8 @@ void main()
 	 * Sie das Fragment mit dem discard Befehl. Experimentieren Sie mit unterschiedlichen
 	 * Grenzwerten bis Sie ein visuell zufriedenstellendes Ergebnis erhalten.
      */
-    out_color = vec4(uv,0.0,1.0);
+	out_color = texture2D(tree_sprite_tx2D, uv).bgra;
+	if (out_color[3] <= 0.5f){
+		discard;
+	}
 }

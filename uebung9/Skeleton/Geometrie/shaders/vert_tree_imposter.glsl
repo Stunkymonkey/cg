@@ -24,17 +24,17 @@ void main() {
     /*
      * TODO (zu Teilaufgabe 2.2): Kopieren Sie ihre Loesung von Teilaufgabe 1.3 und 1.4
      */
-	 mat4 model_view = per_frame.view;
+	mat4 model_view = per_frame.view * trees.model[gl_InstanceID];
 
      /*
      * TODO (zu Teilaufgabe 2.5): Verwenden Sie die Hilfsfunktion rand um eine
 	 * Zufallszahl zwischen 0.7 und 1.0 als Wert fuer scale_factor zu berechnen.
 	 * Verwenden sie die xz Position der jeweiligen Instanz als Eingabe für rand.
-     */
-    float scale_factor = 1.0;
+     */	
+    float scale_factor = rand(in_pos.xz) * 0.3f + 0.7f;
     vec3 scaled_pos = in_pos * scale_factor;
-
+	
     // output
-    gl_Position = per_frame.proj * model_view * vec4(scaled_pos , 1);
+    gl_Position = per_frame.proj *(model_view * vec4(0.f, 0.f, 0.f, 1.f) + vec4(in_pos.x, in_pos.y, 0.f, 0.f));
     uv = in_uv.rg;
 }

@@ -186,6 +186,13 @@ void InitScene() {
 	 * Verwenden sie die ersten beiden Eintraege des Color-Attributes der Vertices um die
 	 * Texturkoordinaten zu speichern (setzen sie den dritten Eintrag einfach auf 0).
 	 */
+	std::vector<Vertex> tree_imposter_vertices{ { { -1.5f, 0.f, 0.f },{ 0.f, 1.f, 0.f } },
+												{ { -1.5f, 3.f, 0.0f },{ 0.f, 0.f, 0.f } },
+												{ { 1.5f, 0.f, 0.0f },{ 1.f, 1.f, 0.f } },
+												{ { 1.5f, 3.f, 0.0f },{ 1.f, 0.f, 0.f } }
+									};
+	std::vector<uint32_t> tree_imposter_indices{1, 0, 2, 1, 2, 3};
+	g_render_batch_tree_imposter = CreateRenderBatch(tree_imposter_vertices, tree_imposter_indices);
 
 	 // create tree sprite texture
 	g_texture_name_tree_sprite = CreateSpriteTexture("resources/pine_tree_sprite.png");
@@ -286,17 +293,20 @@ GLuint CreateSpriteTexture(std::string const& filename)
 	*/
 
 	// generate a new texture object using glGenTextures and store its name in texture_name
-
+	glGenTextures(1, &texture_name);
 	// bind the created texture as a 2D texture
-
+	glBindTexture(GL_TEXTURE_2D, texture_name);
 	// use glTexParameteri to set the texture wrap mode to GL_MIRRORED_REPEAT,
 	// the minification filter to GL_LINEAR_MIPMAP_LINEAR and the maxification filter to GL_LINEAR
 	// hint: you have to do four calls to the function
-
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 	// use the (oldschool) function glTexImage2D to buffer the actual texture data using the information and data supplied above
-
+	glTexImage2D(GL_TEXTURE_2D, level, internal_format, width, height, border, format, type, image_data.data());
 	// generate mipmaps for the texture
-
+	glGenerateMipmap(GL_TEXTURE_2D);
 	/*
 	* TODO (zu Teilaufgabe 2.3)
 	* ENDE
@@ -434,11 +444,13 @@ void RenderFrame() {
     glDrawElements(GL_TRIANGLES, g_render_batch_ground.index_count, GL_UNSIGNED_INT, nullptr);
 
     // render the trees
+	/*
     glUseProgram(g_shader_program_trees);
     glBindVertexArray(g_render_batch_tree.vao);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, g_render_batch_tree.ibo);
     glDrawElementsInstanced(GL_TRIANGLES, g_render_batch_tree.index_count, GL_UNSIGNED_INT, nullptr,
                             numTrees);
+	*/
 
 	// render the tree sprites
 	glUseProgram(g_shader_program_tree_imposter);
