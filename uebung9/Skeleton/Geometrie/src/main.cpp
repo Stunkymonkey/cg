@@ -420,7 +420,7 @@ void UpdateScene() {
      * TODO (zu Teilaufgabe 1.1): Schreiben Sie die View-Matrix nach g_per_frame.view und die
      * Projection-Matrix nach g_per_frame.proj.
      */
-	g_per_frame.view = glm::lookAt(g_cam_pos, cam_dir, glm::vec3(0, 1, 0));
+	g_per_frame.view = glm::lookAt(g_cam_pos, g_cam_pos + cam_dir, glm::vec3(0, 1, 0));
 	g_per_frame.proj = glm::perspective(glm::radians(90.0f), float(g_window_width) / g_window_height, 0.1f, 100.0f);
 }
 
