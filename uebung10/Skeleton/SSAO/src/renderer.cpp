@@ -234,7 +234,16 @@ void cg::SSAO_Renderer::UpdateFramebuffers()
 	// the normal-depth texture as the second color attachment and the geometry depth texture as depth attachment.
 	// Now check the success of this operation using the glCheckFramebufferStatus function and throw a
 	// runtime error when it is not set to complete. Finally, unbind the framebuffer.
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_geometry);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, tex_color, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, tex_normal_depth, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, tex_geometry_depth, 0);
 
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+		throw std::runtime_error("framebuffer error");
+	}
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	// Update the texture for rendering the ambient occlusion values to
 	glBindTexture(GL_TEXTURE_2D, this->tex_ao);
@@ -253,7 +262,14 @@ void cg::SSAO_Renderer::UpdateFramebuffers()
 	// Bind the ambient occlusion framebuffer. Then use glFramebufferTexture2D to attach the ambient occlusion texture
 	// as the first color attachment. Now check the operation of this implementation using the glCheckFramebufferStatus
 	// function and throw a runtime error when it is not set to complete. Finally, unbind the framebuffer.
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_ao);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, tex_ao, 0);
 
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+		throw std::runtime_error("aobuffer error");
+	}
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void cg::SSAO_Renderer::UpdateShaders()

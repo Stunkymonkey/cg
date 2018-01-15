@@ -58,8 +58,11 @@ vec2 GetBlinnPhong(in ivec2 coord)
 	///////
 	// TODO
 	// Calculate the diffuse and specular part of the Blinn-Phong model.
-	float lambertian = 0.0;
+	float lambertian = max(dot(light_dir,normal), 0.0);
 	float specular = 0.0;
+	if (lambertian > 0.0) {
+		specular = pow(max(dot(normal, normalize(light_dir + view_dir)), 0.0), 4.0);
+	}
 
 	return vec2(lambertian, specular);
 }

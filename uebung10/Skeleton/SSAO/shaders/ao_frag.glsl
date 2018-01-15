@@ -73,7 +73,7 @@ void main()
 		// difference between the depth retreived from the texture and the sample's
 		// distance to the camera.
 		// Caution: Keep the sign of the difference in mind!
-		float diff = 0.0;
+		float diff = -(offset.z - texture(tex_normal_depth, (per_frame.proj * sample_pos).xy).r);
 
 		// Calculate the contribution to the occlusion
 		if (diff > 0.0)
