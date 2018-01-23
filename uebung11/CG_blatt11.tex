@@ -1,0 +1,53 @@
+\documentclass[12pt,pdftex,a4paper]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ulem}
+\usepackage{bbm}
+\usepackage{array}
+\usepackage{marvosym}
+\usepackage{color}
+\usepackage{hhline}
+\newcommand{\bbN}{\mathbbm{N}}
+\newcommand{\bbR}{\mathbbm{R}}
+\newcommand{\bbZ}{\mathbbm{Z}}
+\newcommand{\bbI}{\mathbbm{I}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage[pdftex]{graphicx}
+\usepackage{listings}
+\lstset{language=Python,basicstyle=\footnotesize}
+\usepackage{pdfpages}
+\usepackage{booktabs}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref}
+
+\begin{document}
+\title{ Grundlagen der Computergrafik,\\ Blatt 11}
+\author{Lukas Baur, 3131138\\
+		Felix Bühler, 2973410\\
+		Marco Hildenbrand, 3137242}
+\maketitle
+\section*{Aufgabe 1}
+\subsection*{1) Anzahl Dreiecke}
+
+Es müssen mindestens $2(n-1)^{2}$ Dreiecke gerendert werden.
+\subsection*{2) Anzahl Indices}
+
+Dazu müssen 3 mal so viele Indices abgespeichert werden.
+
+\section*{Aufgabe 3}
+\subsection*{3.1)}
+Der Elefant wirf gemäß des Lichteinstrahls nicht einen Schatten auf das ganze Terrain, eine Überdeckung des gesamten Terrains wäre unnötig.\\
+Weiter entfernte Punkte nehmen sowieso einen sehr kleinen Wert an. Diese können vernachlässigt werden.
+\subsection*{3.2)}
+Dazu gibt es weitere Möglichkeiten:\\
+- Ambient Occlusion \\
+- Shadow Volumes \\
+- Implicit Sphere Shadow Maps \\
+
+\end{document}
+
+
