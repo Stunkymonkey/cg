@@ -22,7 +22,7 @@ float CalcDepth()
 	 * TODO: Aufgabe 2.2
 	 * Geben Sie die z-Komponente der normalisierten Gerätekoordinaten zurück.
 	 */
-	return 0.0;
+	return normalize(gl_FragCoord/gl_FragCoord.w).z;
 }
 
 void main()

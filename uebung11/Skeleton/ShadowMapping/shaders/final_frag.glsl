@@ -27,13 +27,17 @@ float CalcShadow(vec3 shadowmap_ndc)
 	 * TODO: Aufgabe 2.2:
 	 * Implementieren Sie naives Shadow Mapping.
 	 */
-
 	// Transform shadowmap_ndc.xy to the proper interval for sampling the texture
-
+	shadowmap_ndc.xy = (shadowmap_ndc.xy * 0.5) + 0.5;
+	
 	// Sample the texture tex_shadowmap
+	float depthValue  = texture2D(tex_shadowmap, shadowmap_ndc.xy).x;
+	float bias = 0.01;
 
 	// Apply a bias and compare
-
+	if (depthValue + bias > shadowmap_ndc.z) {
+		return 0.0;
+	}
 	return 1.0;
 }
 
@@ -90,7 +94,7 @@ float GetDiffuseLight(vec3 normal)
 	 * TODO: Aufgabe 2.1
 	 * Berechnen Sie die diffuse Beleuchtung nach dem Blinn-Phong-Beleuchtungsmodell.
 	 */
-	return 1.0;
+	return max(dot(per_frame.light_dir.xyz, normal), 1.0);
 }
 
 float GetSpecularLight(vec3 normal)
@@ -99,7 +103,12 @@ float GetSpecularLight(vec3 normal)
 	 * TODO: Aufgabe 2.1
 	 * Berechnen Sie die spekulare Beleuchtung nach dem Blinn-Phong-Beleuchtungsmodell.
 	 */
-	return 1.0;
+	vec3 view_dir = -per_frame.view[0].xyz;
+	float specular = 0.0;
+	if (GetDiffuseLight(normal) > 0.0) {
+		specular = pow(max(dot(normal, normalize(per_frame.light_dir.xyz + view_dir)), 0.0), 4.0);
+	}
+	return specular;
 }
 
 void main()
@@ -113,6 +122,15 @@ void main()
 	 * TODO: Aufgabe 2.1
 	 * Berechnen Sie Blinn-Phong shading. Das Licht ist weiﬂ.
 	 */
+	float light_intensity = 1.2;
+	// Weights for ambient, diffuse and specular parts
+	float ka = 0.5;
+	float kd = 0.25;
+	float ks = 0.25;
+
+	// Show ambient term only
+	vec3 frag_color = ka * frag_color;
+	frag_color += frag_color * light_intensity * (kd * diffuse + ks * specular);
 
 	float light = sunlight;
 

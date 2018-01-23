@@ -268,9 +268,34 @@ RenderBatch CreateGround()
 	glm::vec3 color{0.3f};
 
 	/*
-	 * TODO: Aufgabe 1.1
-	 * Generieren sie die Vertices und Indices.
-	 */
+	* TODO: Aufgabe 1.1
+	* Generieren sie die Vertices und Indices.
+	*/
+
+	Vertex x;
+	for (int vx = 0; vx < g_ground_extent; vx++) {
+		for (int vz = 0; vz < g_ground_extent; vz++) {
+			glm::ivec2 pos = glm::ivec2(vx, vz);
+			float vy = GetGroundHeight(pos);
+			x.pos = glm::vec3(vx, vy, vz);
+			x.normal = GetGroundNormal(pos);
+			x.color = color;
+			//x.color = GetGroundNormal(pos);
+			vertices.push_back(x);
+
+			if (vx == g_ground_extent - 1 || vz == g_ground_extent - 1) {
+				continue;
+			}
+			int i = vz +vx * g_ground_extent;
+			indices.push_back(i);
+			indices.push_back(i + 1);
+			indices.push_back(i + g_ground_extent);
+
+			indices.push_back(i + g_ground_extent + 1);
+			indices.push_back(i + g_ground_extent);
+			indices.push_back(i + 1);
+		}
+	}
 
 	glm::vec3 translation{-g_ground_extent / 2.f, 0.01f, -g_ground_extent / 2.f};
 	glm::mat4 transform = glm::translate(glm::mat4{}, translation);
@@ -345,6 +370,30 @@ glm::vec3 GetGroundNormal(glm::ivec2 coords)
 				 * TODO: Aufgabe 1.2
 				 * Berechnen Sie die Terrainnormalen.
 				 */
+				if (x == g_ground_extent - 1 || z == g_ground_extent - 1|| x == 0 || z == 0) {
+					normal_map[x][z] = glm::vec3(0.f, 1.f, 0.f);
+					continue;
+				}
+
+				float tmp;
+				glm::vec3 point;
+				glm::vec3 edge1;
+				glm::vec3 edge2;
+
+				tmp = GetGroundHeight(glm::ivec2(x, z));
+				point = glm::vec3(x, tmp, z);
+				tmp = GetGroundHeight(glm::ivec2(x, z - 1));
+				edge1 = glm::vec3(x, tmp, z - 1);
+				tmp = GetGroundHeight(glm::ivec2(x - 1, z));
+				edge2 = glm::vec3(x - 1, tmp, z);
+				glm::vec3 vTriangleNorm0 = glm::cross(point - edge1, point - edge2);
+				tmp = GetGroundHeight(glm::ivec2(x, z + 1));
+				edge1 = glm::vec3(x, tmp, z + 1);
+				tmp = GetGroundHeight(glm::ivec2(x + 1, z));
+				edge2 = glm::vec3(x + 1, tmp, z);
+				glm::vec3 vTriangleNorm1 = glm::cross(point - edge1, point - edge2);
+
+				normal_map[x][z] = glm::normalize(vTriangleNorm0 + vTriangleNorm1);
 			}
 		}
 	}
