@@ -148,16 +148,20 @@ vec4 triplanarTextureMapping(
      */
         
     // TODO: Take three texture samples using planar mapping along the X-, Y- and Z-axis respectively
-
+	vec4 xtex = texture(texture_xz, uvw_coords.yz);
+	vec4 ytex = texture(texture_y, uvw_coords.xz);
+	vec4 ztex = texture(texture_xz, uvw_coords.xy);
     // TODO: Compute the weights for the three samples from the given surface normal
     // Step 0: Use normal vector as weights
     vec3 weights = normal;
     // Step 1: Eliminate the sign
+	weights = abs(weights);
     // Step 2: Compress the weights by removing small entries in the vector
+	weights = max(weights, 0.001);
     // Step 3: Normalize to force weights to sum to 1.0
-
+	weights = normalize(weights);
     // TODO: Sum up the weighted samples and return result
-
+	return xtex * weights.x + ytex * weights.y + ztex * weights.z;
     /* REPLACE ME */ return texture(texture_y, uvw_coords.xz); // planar mapping along Y-axis /* REPLACE ME*/
 
     /*

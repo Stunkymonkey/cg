@@ -143,7 +143,7 @@ void main()
         /*
          * TODO (Exercise 1.3)
          */
-        // color = ...
+        color = texture2D(tex_ground, frag_tex_coord).bgr;
     }
 
     out_color = vec4(color * light, 1.0);

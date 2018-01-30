@@ -238,12 +238,18 @@ void UpdateGroundTexture(GLint min_filter)
         const Texture &tex = g_ground_textures[lvl];
 
         // TODO: Allocate and upload the texture data with glTexImage2D
+		glTexImage2D(GL_TEXTURE_2D, lvl, GL_RGBA, tex.height(), tex.width(), 0, GL_BGRA, GL_FLOAT, tex.data());
     }
-
     // TODO: Generate the remaining mipmap levels
-
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, static_cast<int>(g_ground_textures.size() - 1));
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, static_cast<int>(g_ground_textures.size() - 1));
+	glGenerateMipmap(GL_TEXTURE_2D);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
     // TODO: Set the texture filters
-
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, min_filter);
     /*
      * TODO (Exercise 1.2)
      * END
@@ -271,11 +277,15 @@ void UpdateGroundMaterialTextures()
         const Texture &tex = g_material_textures[i];
 
         // TODO: Allocate and upload the texture data (for mip-map level 0) with glTexImage2D
-
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tex.height(), tex.width(), 0, GL_BGRA, GL_FLOAT, tex.data());
         // TODO: Generate the remaining mipmap levels
-
+		glGenerateMipmap(GL_TEXTURE_2D);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
         // TODO: Set the filters. Use the values from exercise 1.2 and set GL_TEXTURE_MIN_FILTER to GL_LINEAR_MIPMAP_LINEAR
-
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         /*
         * TODO (Exercise 2.1)
         * END
