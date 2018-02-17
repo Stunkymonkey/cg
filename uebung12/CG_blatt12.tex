@@ -1,0 +1,55 @@
+\documentclass[12pt,pdftex,a4paper]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ulem}
+\usepackage{bbm}
+\usepackage{array}
+\usepackage{marvosym}
+\usepackage{color}
+\usepackage{hhline}
+\newcommand{\bbN}{\mathbbm{N}}
+\newcommand{\bbR}{\mathbbm{R}}
+\newcommand{\bbZ}{\mathbbm{Z}}
+\newcommand{\bbI}{\mathbbm{I}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage[pdftex]{graphicx}
+\usepackage{listings}
+\lstset{language=Python,basicstyle=\footnotesize}
+\usepackage{pdfpages}
+\usepackage{booktabs}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref}
+
+\begin{document}
+\title{ Grundlagen der Computergrafik,\\ Blatt 12}
+\author{Lukas Baur, 3131138\\
+		Felix Bühler, 2973410\\
+		Marco Hildenbrand, 3137242}
+\maketitle
+\section*{Aufgabe 1}
+\subsection*{1)}
+Es treten sonst visuelle Artefakte auf, wenn man die Sicht ändert, oder die Kamrea sich bewegt. Dazu wird durch Mip-Mapping die Performance besser, da für entfernte Objekte kleinere Bilder verwendet werden.
+
+\subsection*{4)}
+\begin{itemize}
+	\item GL\_NEAREST:\\
+	nimmt den nächsten gelegenen Pixel. Hierbei sind weit entfernte Kanten manchmal unterbrochen. Artefakte sind aber in der Entfernung zu sehen.
+	\item GL\_LINEAR:\\
+	nimmt den Durchschnitt der Pixel an und hat daher auch in der Ferne häufiger durchgezogene Kanten. Es sind aber nur minimale Unterschiede zu erkennen. Artefakte sind aber in der Entfernung zu sehen.
+	\item GL\_NEAREST\_MIPMAP\_NEAREST:\\
+	Nutzt die Mipmap, die am besten für die Entfernung passt. Hierbei werden wieder die nähesten Pixel verwendet. Somit sind die Linien weiterhin sehr scharf(kantig).
+	\item GL\_LINEAR\_MIPMAP\_NEAREST:\\
+	Nutzt die Mipmap, die am besten für die Entfernung passt. Hierbei wird der durchschnittliche Pixel verwendet. Somit sind die Linien etwas unscharf. Allerdings tretten weniger Artefakte auf als davor.
+	\item GL\_NEAREST\_MIPMAP\_LINEAR:\\
+	Nutzt die Mipmaps, die am besten für die Entfernung passen. Und gewichtet diese. Hierbei werden die Übergänge zwischen den Mipmaps besser, da die Übergänge besser verschwinden.
+	\item GL\_LINEAR\_MIPMAP\_LINEAR:\\
+	Nutzt die Mipmaps, die am besten für die Entfernung passen. Und berechnet den Durchschnitt dieser. Hierbei werden die Übergänge zwischen den Mipmaps besser, da die Übergänge besser verschwinden. Dazu Werden die Linien weiterhin noch durch gezeichnet. Hierbei treten am wenigsten Artefakte auf.
+\end{itemize}
+
+\end{document}
+
+
